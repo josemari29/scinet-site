@@ -11,10 +11,8 @@ layout: page
 **This document assumes that a licensed copy of CLC Genomics WorkBench 22 is installed locally and available to the user.**
 
 # Before You Begin
+Make sure you have a licensed copy of CLC Genomics Workbench 22 installed locally and accessible to you. The admins will need to setup the import/export directories and permissions for access. Please contact [scinet_vrsc@USDA.GOV](mailto:scinet_vrsc@USDA.GOV?subject=CLC%20setup) with the following information:
 
-Email [scinet_vrsc@USDA.GOV](mailto:scinet_vrsc@USDA.GOV?subject=CLC%20setup) so that the admins can setup the import/export directories and permissions for access.
-
-We need the following information:
 1.	Path to your project directory.
 2.	Do you need access to the mem nodes for your CLC workflow?
 
@@ -22,24 +20,26 @@ We need the following information:
 The CLC License Manager is responsible for managing licenses for CLC Genomics Workbench and CLC Grid Worker. It is installed on the server "ceres19-svc-3" at the following path:
 ```
 /opt/CLCNetworkLicenseManager5
-
 ```
-Port: 6200
+* Port: 6200
 
-Download Link: https://digitalinsights.qiagen.com/products/clc-network-license-manager-direct-download/
+* Download Link: https://digitalinsights.qiagen.com/products/clc-network-license-manager-direct-download/
+ ![CLC License Page2](https://github.com/josemari29/scinet-site/assets/74856967/86d9833f-d373-4d06-af5f-0263ed4dd425)
+
 
 # License Download and Install:
 *   Different licenses exist for CLC Genomics Workbench and CLC Grid Worker.
 *   The licenses follow the naming convention: CLC-NETWORKLICENSE-XXXXX-XXXXX-XXXXX-XXXXX-XXXXX.
+    ![Download a license](https://github.com/josemari29/scinet-site/assets/74856967/6775c179-b1e7-4e8d-a706-ed28e5540809)
+
 *   The licenses are saved in the directory:
 ```
-       /opt/CLCNetworkLicenseManager5/licenses.
+/opt/CLCNetworkLicenseManager5/licenses.
 ```
 *   To install new licenses, follow these steps as root:
   ```
 systemctl stop clclicsrv
 /opt/CLCNetworkLicenseManager5/downloadlicense
-
 ```
 *  When prompted, paste the licenses and press ENTER.
 ```
@@ -86,6 +86,8 @@ service CLCGenomicsServer start
 * Accessible at http://10.1.5.210:7777
 * Username: root
 * Password: (Password provided separately)
+
+![ServerLogin](https://github.com/josemari29/scinet-site/assets/74856967/62bc7ed7-76f3-4c7e-b72d-8621cb1fac45)
 
 # CLC Genomics Workbench
 * CLC Genomics Workbench is a comprehensive and user-friendly bioinformatics software suite designed for the analysis, visualization, and interpretation of genomic, transcriptomic, and proteomic data. Developed by Qiagen, the Workbench provides researchers with a powerful set of tools to handle a wide range of biological data types, making it a valuable asset for genomics research and analysis.
