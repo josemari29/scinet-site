@@ -18,6 +18,87 @@ We need the following information:
 1.	Path to your project directory.
 2.	Do you need access to the mem nodes for your CLC workflow?
 
+# CLC Suite Components and Installation Guide
+The CLC License Manager is responsible for managing licenses for CLC Genomics Workbench and CLC Grid Worker. It is installed on the server "ceres19-svc-3" at the following path:
+```
+/opt/CLCNetworkLicenseManager5
+
+```
+Port: 6200
+
+Download Link: https://digitalinsights.qiagen.com/products/clc-network-license-manager-direct-download/
+
+# License Download and Install:
+*   Different licenses exist for CLC Genomics Workbench and CLC Grid Worker.
+*   The licenses follow the naming convention: CLC-NETWORKLICENSE-XXXXX-XXXXX-XXXXX-XXXXX-XXXXX.
+*   The licenses are saved in the directory:
+```
+       /opt/CLCNetworkLicenseManager5/licenses.
+```
+*   To install new licenses, follow these steps as root:
+  ```
+systemctl stop clclicsrv
+/opt/CLCNetworkLicenseManager5/downloadlicense
+
+```
+*  When prompted, paste the licenses and press ENTER.
+```
+systemctl start clclicsrv
+```
+
+# Audting and Managing Licenses
+The License Mananger currently handles:
+* 4 x CLC Grid Worker licenses
+* 3 x CLC Genomics Workbench licenses
+* Logs are saved in /opt/CLCNetworkLicenseManager5/licenseserver.log
+* Use the LM-X End User Utility (command-line utility) to monitor and manage licenses.
+```
+lmxendutil -licstat -host localhost -port 6200
+```
+# CLC Server
+CLC Server serves two main functions: 
+1. 	Storage management
+2. 	Submitting Grid Jobs via SLURM.
+
+# CLC Server Installation
+* Install CLC Server in console mode (defaults to GUI) with the following command:
+```
+./CLCGenomicsWorkbench_21_0_4_64.sh -c -dir /ceres19-svc-3/data/CLCGenomicsServer
+```
+* During installation prompts, set the username to "admin.clcserver" and leave other options to the default values
+* Set TMPDIR to locations other than /tmp for improved performance
+
+# Launch CLC Server
+```
+service CLCGenomicsServer start
+```
+# CLC Server - Storage
+* Depending on group requirements, create a CLC directory within 90daydata and/or project.
+* The CLC directory should only be managed by "admin.clcserver".
+* The directory should have read-write access for "admin.clcserver" and read-only access for other users in the project.
+
+# CLC Server – Grid (SLURM)
+* CLC Server uses SLURM DRMAA to interface with SLURM on Ceres.
+* GitHub Link: https://github.com/natefoo/slurm-drmaa
+* SLURM DRMAA is installed as an RPM on the service node.
+
+# CLC Server – Configuration and Management:
+* Accessible at http://10.1.5.210:7777
+* Username: root
+* Password: (Password provided separately)
+
+# CLC Genomics Workbench
+* CLC Genomics Workbench is a comprehensive and user-friendly bioinformatics software suite designed for the analysis, visualization, and interpretation of genomic, transcriptomic, and proteomic data. Developed by Qiagen, the Workbench provides researchers with a powerful set of tools to handle a wide range of biological data types, making it a valuable asset for genomics research and analysis.
+* CLC Genomics Workbench is GUI-based client accessible via OOD (OnDemand).
+* Installation:
+* CLC Genomics Workbench is installed in TMPDIR to improve responsiveness.
+* CLC Genomics Workbench Manual
+  https://resources.qiagenbioinformatics.com/manuals/clcgenomicsworkbench/2000/User_Manual.pdf
+
+
+
+
+
 # CLC Server Login
 
 1.	File -> Connections -> CLC Server Connection
@@ -48,6 +129,14 @@ After successful login, you should see a directory CLC-\<your project> in the to
 CLC provides two ways to offload jobs - CLC Server and GRID. Both serve different purposes. 
 
 **CLC Server** can only be used to perform Standard Import and Export. These tasks are performed on Ceres DTN node for faster transfer rate.
+
+
+
+
+
+
+
+
 
 Note that if users select "CLC Server" for any tasks other than those mentioned below, those tasks will not execute and will remain paused. 
 
