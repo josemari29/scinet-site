@@ -128,11 +128,9 @@ After successful login, you should see a directory CLC-\<your project> in the to
 
 ![screenshot of CLC Genomics Workbench 22.0.2 Server Options](/assets/img/CLC3.png)
 
-CLC provides two ways to offload jobs - CLC Server and GRID. Both serve different purposes. 
+* CLC provides two ways to offload jobs - CLC Server and GRID. Both serve different purposes. 
 
-**CLC Server** can only be used to perform Standard Import and Export. These tasks are performed on Ceres DTN node for faster transfer rate.
-
-
+* **CLC Server** can only be used to perform Standard Import and Export. These tasks are performed on Ceres DTN node for faster transfer rate.
 
 
 
@@ -140,9 +138,11 @@ CLC provides two ways to offload jobs - CLC Server and GRID. Both serve differen
 
 
 
-Note that if users select "CLC Server" for any tasks other than those mentioned below, those tasks will not execute and will remain paused. 
 
-**GRID** can be used to run compute tasks on Ceres nodes.
+
+* Note that if users select "CLC Server" for any tasks other than those mentioned below, those tasks will not execute and will remain paused. 
+
+* **GRID** can be used to run compute tasks on Ceres nodes.
 
 The table below lists the tasks and option to use
 
