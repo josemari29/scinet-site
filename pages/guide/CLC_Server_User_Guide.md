@@ -46,7 +46,7 @@ systemctl stop clclicsrv
 systemctl start clclicsrv
 ```
 
-# Audting and Managing Licenses
+# Auditing and Managing Licenses
 The License Mananger currently handles:
 * 4 x CLC Grid Worker licenses
 * 3 x CLC Genomics Workbench licenses
