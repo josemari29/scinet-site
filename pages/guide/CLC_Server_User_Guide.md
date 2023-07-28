@@ -25,34 +25,14 @@ Step 1: Access Open OnDemand:
 
 * Log in using your SCINet credentials to access the Open OnDemand dashboard.
 
-Step 2: Download CLC Genomics Workbench:
-
-* Once logged in, locate and click on the "Apps" or "Applications" section in the Open OnDemand dashboard.
-
-
-* Search for "CLC Genomics Workbench" in the available applications list.
-
-* Click on the "CLC Genomics Workbench" application to start the download process.
-
-* Follow the on-screen prompts to confirm the download. Depending on your browser settings, you may need to choose a download location or grant permission for the download to proceed.
-
-Step 3: Install CLC Genomics Workbench:
-
-* After the download is complete, navigate to the downloaded file (e.g., CLCGenomicsWorkbench_22.0.2.exe or CLCGenomicsWorkbench_22.0.2.dmg) on your local computer.
- ![ClCDOWNLOAD](https://github.com/josemari29/scinet-site/assets/74856967/7a5b640b-a714-43cd-9641-d132678da05e)
-
-* Double-click the downloaded file to start the installation process.
-
-* Follow the installation wizard's instructions to install CLC Genomics Workbench on your computer.
-
-Step 4: Launch CLC Genomics Workbench via Open OnDemand:
+Step 2: Launch CLC Genomics Workbench via Open OnDemand:
 
 * Return to the Open OnDemand dashboard and click on the "Interactive Apps" section.
  ![OpenOnDemand1](https://github.com/josemari29/scinet-site/assets/74856967/0d71cfb3-51fd-4320-85c0-c2dd66d4d67b)
 
 * Look for the "CLC Genomics Workbench" app and click on it to launch the Workbench.
 
-Step 5: Connecting to CLC Server:
+Step 3: Connecting to CLC Server:
 
 * After launching CLC Genomics Workbench, you will see the main interface with various tools and functionalities.
   ![Connections](https://github.com/josemari29/scinet-site/assets/74856967/a06b56d6-6734-4513-8188-9bdc084d0c70)
@@ -87,77 +67,9 @@ Server port: 7777
 
 After successful login, you should see a directory CLC-\<your project> in the top left window.
 
-
-
-
-
-
-
-
-
-
-
-
-
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-# CLC Suite Components and Installation Guide
-The CLC License Manager is responsible for managing licenses for CLC Genomics Workbench and CLC Grid Worker. It is installed on the server "ceres19-svc-3" at the following path:
-```
-/opt/CLCNetworkLicenseManager5
-```
-* Port: 6200
-
-* Download Link: https://digitalinsights.qiagen.com/products/clc-network-license-manager-direct-download/
- ![CLC License Page2](https://github.com/josemari29/scinet-site/assets/74856967/86d9833f-d373-4d06-af5f-0263ed4dd425)
-
-
-# License Download and Install:
-*   Different licenses exist for CLC Genomics Workbench and CLC Grid Worker.
-*   The licenses follow the naming convention: CLC-NETWORKLICENSE-XXXXX-XXXXX-XXXXX-XXXXX-XXXXX.
-    ![Download a license](https://github.com/josemari29/scinet-site/assets/74856967/6775c179-b1e7-4e8d-a706-ed28e5540809)
-
-*   The licenses are saved in the directory:
-```
-/opt/CLCNetworkLicenseManager5/licenses.
-```
-*   To install new licenses, follow these steps as root:
-  ```
-systemctl stop clclicsrv
-/opt/CLCNetworkLicenseManager5/downloadlicense
-```
-*  When prompted, paste the licenses and press ENTER.
-```
-systemctl start clclicsrv
-```
-
-# Auditing and Managing Licenses
-The License Mananger currently handles:
-* 4 x CLC Grid Worker licenses
-* 3 x CLC Genomics Workbench licenses
-* Logs are saved in /opt/CLCNetworkLicenseManager5/licenseserver.log
-* Use the LM-X End User Utility (command-line utility) to monitor and manage licenses.
-```
-lmxendutil -licstat -host localhost -port 6200
-```
-# CLC Server
-CLC Server serves two main functions: 
-1. 	Storage management
-2. 	Submitting Grid Jobs via SLURM.
-
-# CLC Server Installation
-* Install CLC Server in console mode (defaults to GUI) with the following command:
-```
-./CLCGenomicsWorkbench_21_0_4_64.sh -c -dir /ceres19-svc-3/data/CLCGenomicsServer
-```
-* During installation prompts, set the username to "admin.clcserver" and leave other options to the default values
-* Set TMPDIR to locations other than /tmp for improved performance
-
-# Launch CLC Server
-```
-service CLCGenomicsServer start
-```
 # CLC Server - Storage
 * Depending on group requirements, create a CLC directory within 90daydata and/or project.
 * The CLC directory should only be managed by "admin.clcserver".
@@ -168,12 +80,6 @@ service CLCGenomicsServer start
 * GitHub Link: https://github.com/natefoo/slurm-drmaa
 * SLURM DRMAA is installed as an RPM on the service node.
 
-# CLC Server – Configuration and Management:
-* Accessible at http://10.1.5.210:7777
-* Username: root
-* Password: (Password provided separately)
-
-![ServerLogin](https://github.com/josemari29/scinet-site/assets/74856967/62bc7ed7-76f3-4c7e-b72d-8621cb1fac45)
 
 # CLC Genomics Workbench
 * CLC Genomics Workbench is a comprehensive and user-friendly bioinformatics software suite designed for the analysis, visualization, and interpretation of genomic, transcriptomic, and proteomic data. Developed by Qiagen, the Workbench provides researchers with a powerful set of tools to handle a wide range of biological data types, making it a valuable asset for genomics research and analysis.
@@ -183,33 +89,6 @@ service CLCGenomicsServer start
 * CLC Genomics Workbench Manual
   https://resources.qiagenbioinformatics.com/manuals/clcgenomicsworkbench/2000/User_Manual.pdf
 
-
-
-
-
-# CLC Server Login
-
-1.	File -> Connections -> CLC Server Connection
-2.	Server Name and Port
-	
-  * **If connecting via VPN/OCVPN**
-```
-Server name: 10.1.5.210
-Server port: 7777
-```
-  *	**If connecting via ARS Network**
-```
-Server host: 205.237.112.197
-Server port: 7777
-```
-3.	Username and Password(GA code not required) 
-
-4.	Log in.
-
-![screenshot of CLC Genomics Workbench 22.0.2 software homescreen](/assets/img/CLC2.png)
-
-After successful login, you should see a directory CLC-\<your project> in the top left window.
-
 # CLC Server vs GRID
 
 ![screenshot of CLC Genomics Workbench 22.0.2 Server Options](/assets/img/CLC3.png)
@@ -217,13 +96,6 @@ After successful login, you should see a directory CLC-\<your project> in the to
 * CLC provides two ways to offload jobs - CLC Server and GRID. Both serve different purposes. 
 
 * **CLC Server** can only be used to perform Standard Import and Export. These tasks are performed on Ceres DTN node for faster transfer rate.
-
-
-
-
-
-
-
 
 
 * Note that if users select "CLC Server" for any tasks other than those mentioned below, those tasks will not execute and will remain paused. 
