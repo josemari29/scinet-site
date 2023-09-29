@@ -19,13 +19,13 @@ layout: page
 
 # 1. Introduction
 
-Apptainer [https://sylabs.io/](https://sylabs.io/) is an application for running containers on an HPC cluster. Containers are self-contained application execution environments that contain all necessary software to run an application or workflow, so you don't need to worry about installing all the dependencies. There are many pre-built container images for scientific applications available for download and use, see section [Container Images](#3-container-images).
+Apptainer (previously known as Singularity) [https://apptainer.org/](https://apptainer.org/) is an application for running containers on an HPC cluster. Containers are self-contained application execution environments that contain all necessary software to run an application or workflow, so you don't need to worry about installing all the dependencies. There are many pre-built container images for scientific applications available for download and use, see section [Container Images](#3-container-images).
 
 
 
 # 2. Prerequisites
 
-To run containers on Ceres, you'll need to execute the singularity command from a compute node. For example, to run an interactive session on a compute node, use the SLURM salloc command:
+To run containers on Ceres, you'll need to execute the apptainer command from a compute node. For example, to run an interactive session on a compute node, use the SLURM salloc command:
 
 ```bash
 [user.name@ceres ~]$ salloc
@@ -40,7 +40,7 @@ apptainer is hashed (/usr/bin/apptainer)
 
 NOTE: salloc by default runs on a single hyper-threaded core (2 logical cores) with 6000 MB of allocated memory on one of the compute nodes. The session will last for 2 days, but will timeout after 1.5 hours of inactivity (no commands runnning). See the [Ceres User Manual](/guide/ceres/) for more info on how to request resources for interactive jobs.
 
-NOTE: on Atlas apptainer is available through environment module. Before issuing any singularity command, load the module by issuing "module load apptainer" command.
+NOTE: On Atlas, apptainer is available through environment module. Before issuing any apptainer command, load the module by issuing "module load apptainer" command.
 
 
 # 3. Container Images
@@ -96,14 +96,14 @@ images from Docker Hub, except replace the "docker://" URI prefix with "library:
 
 ### Creating Your Own Apptainer Images
 
-Root access is needed to create a Apptainer image from a bootstrap file. As Ceres users do not have root access, to create your own Apptainer image, you can paste the bootstrap file to Apptainer cloud builder [https://cloud.sylabs.io/builder](https://cloud.sylabs.io/builder). 
+Root access is needed to create a Apptainer image from a bootstrap file. As Ceres users do not have root access, to create your own Apptainer image, you can paste the bootstrap file to Apptainer cloud builder [https://apptainer.org/docs/user/1.0/cli/apptainer_remote.html](https://apptainer.org/docs/user/1.0/cli/apptainer_remote.html). 
 
-Bootstrap examples - https://github.com/sylabs/apptainer/tree/master/examples
+Bootstrap examples - [https://github.com/sylabs/apptainer/tree/master/examples](https://github.com/apptainer/singularity-userdocs)
 
 
 # 6. Executing Containers
 
-Three commands may be used to execute applications inside Singularity containers:
+Three commands may be used to execute applications inside apptainer containers:
 
   `apptainer run`,
 
@@ -155,7 +155,7 @@ The downloaded source packages are in
 
 ### `apptainer exec`
 
-A container image can contain many executables / scripts. The singularity exec command can be used to select which program to run in the container. For example, to run a simple R script using the Rscript command in the container, prefix the Rscript command with  `apptainer exec r-base.img`:
+A container image can contain many executables / scripts. The apptainer exec command can be used to select which program to run in the container. For example, to run a simple R script using the Rscript command in the container, prefix the Rscript command with  `apptainer exec r-base.img`:
 
 ```bash
 [user.name@sn-cn-11-2 ~]$ cat test.R
@@ -185,7 +185,7 @@ ID=debian
 HOME_URL="https://www.debian.org/"
 SUPPORT_URL="https://www.debian.org/support"
 BUG_REPORT_URL="https://bugs.debian.org/"
-Singularity r-base.img:~> exit
+Apptainer r-base.img:~> exit
 exit
 [user.name@sn-cn-11-2 ~]$
 ```
