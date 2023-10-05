@@ -45,11 +45,11 @@ NOTE: On Atlas, apptainer is available through environment module. Before issuin
 
 # 3. Container Images
 
-Apptainer executes a container from a Apptainer container image either created by the user or downloaded from Apptainer Library [https://cloud.sylabs.io/library](https://cloud.sylabs.io/library), and can also import and execute Docker [https://www.docker.com/](https://www.docker.com/) container images, either directly uploaded by the user, or downloaded from Docker Hub [https://hub.docker.com/](https://hub.docker.com/).
+Apptainer can import and execute Docker [https://www.docker.com/](https://www.docker.com/) container images, either directly uploaded by the user or download from Docker Hub [https://hub.docker.com/](https://hub.docker.com/).
 
 BioContainers is a "community-driven project that provides the infrastructure and basic guidelines to create, manage and distribute Bioinformatics [Docker] containers with special focus in Proteomics, Genomics, Transcriptomics and Metabolomics."
 
-BioContainers can be obtained either via docker [https://hub.docker.com/u/biocontainers/](https://hub.docker.com/u/biocontainers/) or via Quay [https://quay.io/](https://quay.io/)
+BioContainers can be obtained either via [https://biocontainers.pro/](https://biocontainers.pro/)] or via Quay [https://quay.io/](https://quay.io/)
 
 For leveraging GPU using containers, Nvidia provides a container library NGC. [https://ngc.nvidia.com/catalog/all](https://ngc.nvidia.com/catalog/all) 
 
